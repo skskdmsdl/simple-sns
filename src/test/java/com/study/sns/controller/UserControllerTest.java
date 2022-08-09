@@ -1,7 +1,7 @@
 package com.study.sns.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.study.sns.controller.model.User;
+import com.study.sns.model.User;
 import com.study.sns.controller.request.UserJoinRequest;
 import com.study.sns.controller.request.UserLoginRequest;
 import com.study.sns.exception.SnsApplicationException;

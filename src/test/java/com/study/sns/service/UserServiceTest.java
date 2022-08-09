@@ -1,6 +1,6 @@
 package com.study.sns.service;
 
-import com.study.sns.controller.model.entity.UserEntity;
+import com.study.sns.model.entity.UserEntity;
 import com.study.sns.exception.SnsApplicationException;
 import com.study.sns.fixture.UserEntityFixture;
 import com.study.sns.repository.UserEntityRepository;

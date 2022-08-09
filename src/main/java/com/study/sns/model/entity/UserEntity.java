@@ -1,4 +1,4 @@
-package com.study.sns.controller.model.entity;
+package com.study.sns.model.entity;
 
 import lombok.Getter;
 import lombok.Setter;

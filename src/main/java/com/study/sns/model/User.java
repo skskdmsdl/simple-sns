@@ -1,4 +1,4 @@
-package com.study.sns.controller.model;
+package com.study.sns.model;
 
 // TODO : implement
 public class User {

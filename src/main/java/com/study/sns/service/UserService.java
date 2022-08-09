@@ -1,7 +1,7 @@
 package com.study.sns.service;
 
-import com.study.sns.controller.model.User;
-import com.study.sns.controller.model.entity.UserEntity;
+import com.study.sns.model.User;
+import com.study.sns.model.entity.UserEntity;
 import com.study.sns.exception.SnsApplicationException;
 import com.study.sns.repository.UserEntityRepository;
 import lombok.RequiredArgsConstructor;
