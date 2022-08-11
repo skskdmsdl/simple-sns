@@ -12,3 +12,8 @@ spring.datasource:
   username: lekipxrfqyqnix
   password: 52726764270f547a70929431b1c68f891f623f31979f85e2afcb3a07d6141f65
   driver-class-name: org.postgresql.Driver
+
+jwt:
+  secret-key: springboot_sns_application_2022.secret_key
+  # 30 days 24*60*60*30
+  token.expired-time-ms: 2592000000

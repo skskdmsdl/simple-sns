@@ -5,7 +5,9 @@ import com.study.sns.model.User;
 import com.study.sns.model.entity.UserEntity;
 import com.study.sns.exception.SnsApplicationException;
 import com.study.sns.repository.UserEntityRepository;
+import com.study.sns.util.JwtTokenUtils;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,12 @@ public class UserService {
 
     private final UserEntityRepository userEntityRepository;
     private final BCryptPasswordEncoder encoder;
+
+    @Value("${jwt.secret-key}")
+    private String secretKey;
+
+    @Value("${jwt.token.expired-time-ms}")
+    private Long expiredTimeMs;
 
     @Transactional
     public User join(String userName, String password) {
@@ -42,7 +50,8 @@ public class UserService {
         }
 
         // 토큰 생성
+        String token = JwtTokenUtils.generateToken(userName, secretKey, expiredTimeMs);
 
-        return "";
+        return token;
     }
 }
