@@ -6,6 +6,8 @@ import com.study.sns.controller.request.PostModifyRequest;
 import com.study.sns.controller.request.UserJoinRequest;
 import com.study.sns.exception.ErrorCode;
 import com.study.sns.exception.SnsApplicationException;
+import com.study.sns.fixture.PostEntityFixture;
+import com.study.sns.model.Post;
 import com.study.sns.service.PostService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -64,11 +67,15 @@ public class PostControllerTest {
                 .andExpect(status().isUnauthorized());
     }
 
+    // void(반환 x)인 경우 mocking이 따로 필요 없음
     @Test
     @WithMockUser
     void 포스트수정() throws Exception {
         String title = "title";
         String body = "body";
+
+        when(postService.modify(eq(title), eq(body), any(), any()))
+                .thenReturn(Post.fromEntity(PostEntityFixture.get("userName", 1, 1)));
 
         mockMvc.perform(put("/api/v1/posts/1")
                         .contentType(MediaType.APPLICATION_JSON)
