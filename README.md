@@ -17,4 +17,4 @@ Spring Boot
 * Lombok
 
 그 외
-* Heroku
+* Heroku 배포 URL : https://simple-sns-project.herokuapp.com/authentication/sign-in
