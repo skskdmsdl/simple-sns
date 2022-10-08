@@ -74,4 +74,8 @@ public class PostService {
                 new SnsApplicationException(ErrorCode.USER_NOT_FOUND, String.format("%s not founded", userName)));
         return postEntityRepository.findAllByUser(userEntity, pageable).map(Post::fromEntity);
     }
+
+    public void like(Integer postId, String userName) {
+
+    }
 }
