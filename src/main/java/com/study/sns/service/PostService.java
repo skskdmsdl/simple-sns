@@ -75,6 +75,8 @@ public class PostService {
         return postEntityRepository.findAllByUser(userEntity, pageable).map(Post::fromEntity);
     }
 
+    // TODO : like service 추후 구현 예정
+    @Transactional
     public void like(Integer postId, String userName) {
 
     }
