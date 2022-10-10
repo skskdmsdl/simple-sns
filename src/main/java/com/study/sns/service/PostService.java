@@ -75,9 +75,15 @@ public class PostService {
         return postEntityRepository.findAllByUser(userEntity, pageable).map(Post::fromEntity);
     }
 
-    // TODO : like service 추후 구현 예정
+    // TODO : like service 추후 코드 리팩토링 예정
     @Transactional
     public void like(Integer postId, String userName) {
+        // post exist
+        PostEntity postEntity = postEntityRepository.findById(postId).orElseThrow(() ->
+                new SnsApplicationException(ErrorCode.POST_NOT_FOUND, String.format("%s not founded", postId)));
+
+        UserEntity userEntity = userEntityRepository.findByUserName(userName).orElseThrow(() ->
+                new SnsApplicationException(ErrorCode.USER_NOT_FOUND, String.format("%s not founded", userName)));
 
     }
 }
