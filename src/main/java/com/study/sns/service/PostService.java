@@ -5,6 +5,7 @@ import com.study.sns.exception.SnsApplicationException;
 import com.study.sns.model.Post;
 import com.study.sns.model.entity.PostEntity;
 import com.study.sns.model.entity.UserEntity;
+import com.study.sns.repository.LikeEntityRepository;
 import com.study.sns.repository.PostEntityRepository;
 import com.study.sns.repository.UserEntityRepository;
 import lombok.RequiredArgsConstructor;
