@@ -3,6 +3,7 @@ package com.study.sns.service;
 import com.study.sns.exception.ErrorCode;
 import com.study.sns.exception.SnsApplicationException;
 import com.study.sns.model.Post;
+import com.study.sns.model.entity.LikeEntity;
 import com.study.sns.model.entity.PostEntity;
 import com.study.sns.model.entity.UserEntity;
 import com.study.sns.repository.LikeEntityRepository;
@@ -91,10 +92,9 @@ public class PostService {
         likeEntityRepository.findByUserAndPost(userEntity, postEntity).ifPresent(it -> {
             throw new SnsApplicationException(ErrorCode.ALREADY_LIKED_POST, String.format("userName %s already like the post %s", userName, postId));
         });
-
-        // likeEntityRepository
         
         // like save
+        likeEntityRepository.save(LikeEntity.of(postEntity, userEntity));
 
     }
 }
