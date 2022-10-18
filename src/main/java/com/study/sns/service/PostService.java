@@ -79,7 +79,6 @@ public class PostService {
         return postEntityRepository.findAllByUser(userEntity, pageable).map(Post::fromEntity);
     }
 
-    // TODO : like service 추후 코드 리팩토링 예정
     @Transactional
     public void like(Integer postId, String userName) {
         // post exist
@@ -99,8 +98,10 @@ public class PostService {
 
     }
 
-    public Integer getLikeCount(Integer postId) {
+    public int getLikeCount(Integer postId) {
+        // post exist
         PostEntity postEntity = postEntityRepository.findById(postId).orElseThrow(() -> new SnsApplicationException(ErrorCode.POST_NOT_FOUND, String.format("postId is %d", postId)));
+        // count like
         List<LikeEntity> likes = likeEntityRepository.findAllByPost(postEntity);
         return likes.size();
     }
