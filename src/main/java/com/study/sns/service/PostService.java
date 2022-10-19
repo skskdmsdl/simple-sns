@@ -102,7 +102,9 @@ public class PostService {
         // post exist
         PostEntity postEntity = postEntityRepository.findById(postId).orElseThrow(() -> new SnsApplicationException(ErrorCode.POST_NOT_FOUND, String.format("postId is %d", postId)));
         // count like
-        List<LikeEntity> likes = likeEntityRepository.findAllByPost(postEntity);
-        return likes.size();
+//        List<LikeEntity> likes = likeEntityRepository.findAllByPost(postEntity);
+//        return likes.size();
+
+        return likeEntityRepository.countByPost(postEntity);
     }
 }
