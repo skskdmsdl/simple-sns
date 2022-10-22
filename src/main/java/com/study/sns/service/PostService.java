@@ -109,7 +109,7 @@ public class PostService {
     }
 
     @Transactional
-    public void comment(Integer postId,String userName) {
+    public void comment(Integer postId,String userName, String comment) {
 
     }
 }
