@@ -3,6 +3,7 @@ package com.study.sns.service;
 import com.study.sns.exception.ErrorCode;
 import com.study.sns.exception.SnsApplicationException;
 import com.study.sns.model.Post;
+import com.study.sns.model.entity.CommentEntity;
 import com.study.sns.model.entity.LikeEntity;
 import com.study.sns.model.entity.PostEntity;
 import com.study.sns.model.entity.UserEntity;
@@ -110,6 +111,14 @@ public class PostService {
 
     @Transactional
     public void comment(Integer postId,String userName, String comment) {
+        PostEntity postEntity = postEntityRepository.findById(postId).orElseThrow(() -> new SnsApplicationException(ErrorCode.POST_NOT_FOUND, String.format("postId is %d", postId)));
+        UserEntity userEntity = userEntityRepository.findByUserName(userName)
+                .orElseThrow(() -> new SnsApplicationException(ErrorCode.USER_NOT_FOUND, String.format("userName is %s", userName)));
+
+//        SnsApplicationException.save(CommentEntity.of(comment, postEntity, userEntity));
+
+        // create alarm
+        // notificationService.send(AlarmType.NEW_COMMENT_ON_POST, new AlarmArgs(userEntity.getId(), postId), postEntity.getUser());
 
     }
 }
