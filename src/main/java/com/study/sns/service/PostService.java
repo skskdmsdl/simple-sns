@@ -83,11 +83,8 @@ public class PostService {
     @Transactional
     public void like(Integer postId, String userName) {
         // post exist
-        PostEntity postEntity = postEntityRepository.findById(postId).orElseThrow(() ->
-                new SnsApplicationException(ErrorCode.POST_NOT_FOUND, String.format("%s not founded", postId)));
-
-        UserEntity userEntity = userEntityRepository.findByUserName(userName).orElseThrow(() ->
-                new SnsApplicationException(ErrorCode.USER_NOT_FOUND, String.format("%s not founded", userName)));
+        PostEntity postEntity = getPostEntityOrException(postId);
+        UserEntity userEntity = getUserEntityOrException(userName);
         
         // check liked -> throw
         likeEntityRepository.findByUserAndPost(userEntity, postEntity).ifPresent(it -> {
@@ -121,4 +118,16 @@ public class PostService {
         // notificationService.send(AlarmType.NEW_COMMENT_ON_POST, new AlarmArgs(userEntity.getId(), postId), postEntity.getUser());
 
     }
+    
+    private PostEntity getPostEntityOrException(Integer postId) {
+        return postEntityRepository.findById(postId).orElseThrow(() -> 
+               new SnsApplicationException(ErrorCode.POST_NOT_FOUND, String.format("%s not founded", postId)));
+    }
+    
+    private UserEntity getUserEntityOrException(Integer userName) {
+        return userEntityRepository.findById(userName).orElseThrow(() -> 
+               new SnsApplicationException(ErrorCode.USER_NOT_FOUND, String.format("%s not founded", userName)));
+    }
+    
+        
 }
