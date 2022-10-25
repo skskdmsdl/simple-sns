@@ -124,8 +124,8 @@ public class PostService {
                new SnsApplicationException(ErrorCode.POST_NOT_FOUND, String.format("%s not founded", postId)));
     }
     
-    private UserEntity getUserEntityOrException(Integer userName) {
-        return userEntityRepository.findById(userName).orElseThrow(() -> 
+    private UserEntity getUserEntityOrException(String userName) {
+        return userEntityRepository.findByUserName(userName).orElseThrow(() ->
                new SnsApplicationException(ErrorCode.USER_NOT_FOUND, String.format("%s not founded", userName)));
     }
     
