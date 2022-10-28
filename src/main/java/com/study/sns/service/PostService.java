@@ -7,6 +7,7 @@ import com.study.sns.model.entity.CommentEntity;
 import com.study.sns.model.entity.LikeEntity;
 import com.study.sns.model.entity.PostEntity;
 import com.study.sns.model.entity.UserEntity;
+import com.study.sns.repository.CommentEntityRepository;
 import com.study.sns.repository.LikeEntityRepository;
 import com.study.sns.repository.PostEntityRepository;
 import com.study.sns.repository.UserEntityRepository;
@@ -25,6 +26,7 @@ public class PostService {
     private final PostEntityRepository postEntityRepository;
     private final UserEntityRepository userEntityRepository;
     private final LikeEntityRepository likeEntityRepository;
+    private final CommentEntityRepository commentEntityRepository;
 
     @Transactional
     public void create(String title, String body, String userName) {
@@ -105,7 +107,7 @@ public class PostService {
         PostEntity postEntity = getPostEntityOrException(postId);
         UserEntity userEntity = getUserEntityOrException(userName);
 
-//        SnsApplicationException.save(CommentEntity.of(comment, postEntity, userEntity));
+        commentEntityRepository.save(CommentEntity.of(comment, postEntity, userEntity));
 
         // create alarm
         // notificationService.send(AlarmType.NEW_COMMENT_ON_POST, new AlarmArgs(userEntity.getId(), postId), postEntity.getUser());
