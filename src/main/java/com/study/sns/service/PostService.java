@@ -2,6 +2,7 @@ package com.study.sns.service;
 
 import com.study.sns.exception.ErrorCode;
 import com.study.sns.exception.SnsApplicationException;
+import com.study.sns.model.Comment;
 import com.study.sns.model.Post;
 import com.study.sns.model.entity.CommentEntity;
 import com.study.sns.model.entity.LikeEntity;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.stream.DoubleStream;
 
 @Service
 @RequiredArgsConstructor
@@ -123,6 +125,8 @@ public class PostService {
         return userEntityRepository.findByUserName(userName).orElseThrow(() ->
                new SnsApplicationException(ErrorCode.USER_NOT_FOUND, String.format("%s not founded", userName)));
     }
-    
-        
+
+    public Page<Comment> getComments(Integer postId, Pageable pageable) {
+    }
+
 }

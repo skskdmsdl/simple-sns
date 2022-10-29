@@ -64,4 +64,10 @@ public class PostController {
         postService.comment(postId, authentication.getName(), request.getComment());
         return Response.success();
     }
+
+    @GetMapping("/{postId}/comments")
+    public Response<Page<CommentResponse>> comments(Pageable pageable, @PathVariable Integer postId) {
+        return Response.success(postService.getComments(postId, pageable));
+    }
+
 }
