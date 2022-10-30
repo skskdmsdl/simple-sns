@@ -115,18 +115,21 @@ public class PostService {
         // notificationService.send(AlarmType.NEW_COMMENT_ON_POST, new AlarmArgs(userEntity.getId(), postId), postEntity.getUser());
 
     }
-    
+
+    public Page<Comment> getComments(Integer postId, Pageable pageable) {
+        PostEntity postEntity = getPostEntityOrException(postId);
+        return commentEntityRepository.findAllByPost(postEntity, pageable).map(Comment::fromEntity);
+    }
+
     private PostEntity getPostEntityOrException(Integer postId) {
-        return postEntityRepository.findById(postId).orElseThrow(() -> 
+        return postEntityRepository.findById(postId).orElseThrow(() ->
                new SnsApplicationException(ErrorCode.POST_NOT_FOUND, String.format("%s not founded", postId)));
     }
-    
+
     private UserEntity getUserEntityOrException(String userName) {
         return userEntityRepository.findByUserName(userName).orElseThrow(() ->
                new SnsApplicationException(ErrorCode.USER_NOT_FOUND, String.format("%s not founded", userName)));
     }
 
-    public Page<Comment> getComments(Integer postId, Pageable pageable) {
-    }
 
 }

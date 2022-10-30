@@ -5,6 +5,7 @@ import com.study.sns.controller.request.PostCreateRequest;
 import com.study.sns.controller.request.PostModifyRequest;
 import com.study.sns.controller.response.PostResponse;
 import com.study.sns.controller.response.Response;
+import com.study.sns.model.Comment;
 import com.study.sns.model.Post;
 import com.study.sns.service.PostService;
 import lombok.RequiredArgsConstructor;
@@ -66,7 +67,7 @@ public class PostController {
     }
 
     @GetMapping("/{postId}/comments")
-    public Response<Page<CommentResponse>> comments(Pageable pageable, @PathVariable Integer postId) {
+    public Response<Page<Comment>> comments(Pageable pageable, @PathVariable Integer postId) {
         return Response.success(postService.getComments(postId, pageable));
     }
 
