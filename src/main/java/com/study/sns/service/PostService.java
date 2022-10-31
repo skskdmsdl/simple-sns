@@ -1,5 +1,6 @@
 package com.study.sns.service;
 
+import com.study.sns.controller.response.CommentResponse;
 import com.study.sns.exception.ErrorCode;
 import com.study.sns.exception.SnsApplicationException;
 import com.study.sns.model.Comment;

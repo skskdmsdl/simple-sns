@@ -3,6 +3,7 @@ package com.study.sns.controller;
 import com.study.sns.controller.request.PostCommentRequest;
 import com.study.sns.controller.request.PostCreateRequest;
 import com.study.sns.controller.request.PostModifyRequest;
+import com.study.sns.controller.response.CommentResponse;
 import com.study.sns.controller.response.PostResponse;
 import com.study.sns.controller.response.Response;
 import com.study.sns.model.Comment;
@@ -67,8 +68,8 @@ public class PostController {
     }
 
     @GetMapping("/{postId}/comments")
-    public Response<Page<Comment>> comments(Pageable pageable, @PathVariable Integer postId) {
-        return Response.success(postService.getComments(postId, pageable));
+    public Response<Page<CommentResponse>> comments(Pageable pageable, @PathVariable Integer postId, Authentication authentication) {
+        return Response.success(postService.getComments(postId, pageable).map(CommentResponse::fromComment));
     }
 
 }
