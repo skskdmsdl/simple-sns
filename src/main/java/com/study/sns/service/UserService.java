@@ -8,6 +8,8 @@ import com.study.sns.repository.UserEntityRepository;
 import com.study.sns.util.JwtTokenUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -44,7 +46,6 @@ public class UserService {
         return User.fromEntity(userEntity);
     }
 
-    //TODO : implement
     public String login(String userName, String password) {
         // 회원가입 여부 체크
         UserEntity userEntity = userEntityRepository.findByUserName(userName).orElseThrow(() -> new SnsApplicationException(ErrorCode.USER_NOT_FOUND, String.format("%s not founded", userName)));
@@ -58,5 +59,11 @@ public class UserService {
         String token = JwtTokenUtils.generateToken(userName, secretKey, expiredTimeMs);
 
         return token;
+    }
+
+    // TODO : alarm return
+    public Page<Void> alarmList(String userName, Pageable pageable) {
+
+        return Page.empty();
     }
 }
