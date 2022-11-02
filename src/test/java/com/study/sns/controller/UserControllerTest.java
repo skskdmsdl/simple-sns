@@ -13,6 +13,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithAnonymousUser;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -122,5 +123,14 @@ public class UserControllerTest {
                 .andExpect(status().isOk());
     }
 
+    @Test
+    @WithAnonymousUser
+    void 알람기능시_로그인하지_않은경우() throws Exception {
+        when(userService.alarmList(any(), any())).thenReturn(Page.empty());
+        mockMvc.perform(get("/api/v1/users/alarm")
+                        .contentType(MediaType.APPLICATION_JSON)
+                ).andDo(print())
+                .andExpect(status().isUnauthorized());
+    }
 
 }
