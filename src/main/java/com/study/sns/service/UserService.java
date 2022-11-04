@@ -64,6 +64,6 @@ public class UserService {
     // TODO : alarm return
     public Page<Void> alarmList(String userName, Pageable pageable) {
 
-        return Page.empty();
+        return alarmEntityRepository.findAllByUserId(userId, pageable).map(Alarm::fromEntity);
     }
 }
