@@ -2,6 +2,7 @@ package com.study.sns.model.entity;
 
 import com.study.sns.model.AlarmArgs;
 import com.study.sns.model.AlarmType;
+import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,6 +21,7 @@ import java.time.Instant;
 @Table(name = "\"alarm\"", indexes = {
         @Index(name = "user_id_idx", columnList = "user_id")
 })
+@TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 @SQLDelete(sql = "UPDATE \"alarm\" SET removed_at = NOW() WHERE id=?")
 @Where(clause = "removed_at is NULL")
 @NoArgsConstructor
@@ -67,6 +69,5 @@ public class AlarmEntity {
         entity.setUser(user);
         return entity;
     }
+
 }
-Footer
-        © 2022 GitHu
