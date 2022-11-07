@@ -1,9 +1,12 @@
 package com.study.sns.service;
 
 import com.study.sns.exception.ErrorCode;
+import com.study.sns.model.Alarm;
 import com.study.sns.model.User;
+import com.study.sns.model.entity.AlarmEntity;
 import com.study.sns.model.entity.UserEntity;
 import com.study.sns.exception.SnsApplicationException;
+import com.study.sns.repository.AlarmEntityRepository;
 import com.study.sns.repository.UserEntityRepository;
 import com.study.sns.util.JwtTokenUtils;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +24,7 @@ import java.util.Optional;
 public class UserService {
 
     private final UserEntityRepository userEntityRepository;
+    private final AlarmEntityRepository alarmEntityRepository;
     private final BCryptPasswordEncoder encoder;
 
     @Value("${jwt.secret-key}")
@@ -62,8 +66,8 @@ public class UserService {
     }
 
     // TODO : alarm return
-    public Page<Void> alarmList(String userName, Pageable pageable) {
-
+    @Transactional
+    public Page<Alarm> alarmList(Integer userId, Pageable pageable) {
         return alarmEntityRepository.findAllByUserId(userId, pageable).map(Alarm::fromEntity);
     }
 }
