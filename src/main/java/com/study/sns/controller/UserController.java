@@ -38,5 +38,5 @@ public class UserController {
     @GetMapping("alarm")
     public Response<Page<AlarmResponse>> alarm(Pageable pageable, Authentication authentication){
         User user = ClassUtils.getSafeCastInstance(authentication.getPrincipal(), User.class);
-        return Response.success(userService.alarmList(user.getId(), pageable).map(AlarmResponse::fromAlarm));    }
+        return Response.success(userService.alarmList(user.getUsername(), pageable).map(AlarmResponse::fromAlarm));    }
 }
