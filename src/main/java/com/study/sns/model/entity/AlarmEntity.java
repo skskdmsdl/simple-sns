@@ -62,7 +62,7 @@ public class AlarmEntity {
         this.updatedAt = Timestamp.from(Instant.now());
     }
 
-    public static AlarmEntity of(AlarmType alarmType, AlarmArgs args, UserEntity user) {
+    public static AlarmEntity of(UserEntity user, AlarmType alarmType, AlarmArgs args) {
         AlarmEntity entity = new AlarmEntity();
         entity.setAlarmType(alarmType);
         entity.setArgs(args);
