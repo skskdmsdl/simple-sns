@@ -2,11 +2,11 @@ package com.study.sns.controller.response;
 
 import com.study.sns.model.Alarm;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 
 import java.sql.Timestamp;
 
-@Getter
+@Data
 @AllArgsConstructor
 public class AlarmResponse {
     private Integer id;
