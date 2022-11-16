@@ -17,3 +17,5 @@ jwt:
   secret-key: springboot_sns_application_2022.secret_key
   # 30 days 24*60*60*30
   token.expired-time-ms: 2592000000
+
+spring.redis.url:
