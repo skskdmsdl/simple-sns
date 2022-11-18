@@ -6,6 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.time.Duration;
+
 // redis의 유저를 캐싱하고 그 캐시에서 유저를 가져오는 클래스
 // redis 같은 경우 일정 시간이 지나면 expired 되도록 하는 것이 좋음(TTL)
 @Slf4j
@@ -14,11 +16,12 @@ import org.springframework.stereotype.Repository;
 public class UserCacheRepository {
 
     private final RedisTemplate<String, User> userRedisTemplate;
+    private final static Duration USER_CACHE_TTL = Duration.ofDays(3);
 
     public void setUser(User user) {
         String key = getKey(user.getUsername());
         log.info("Set User to Redis {}:{}", key, user);
-        userRedisTemplate.opsForValue().set(key, user);
+        userRedisTemplate.opsForValue().set(key, user, USER_CACHE_TTL);
     }
 
     public User getUser(String userName) {
