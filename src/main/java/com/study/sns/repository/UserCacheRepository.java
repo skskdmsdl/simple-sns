@@ -29,7 +29,7 @@ public class UserCacheRepository {
     public Optional<User> getUser(String userName) {
         String key = getKey(userName);
         User user = userRedisTemplate.opsForValue().get(key);
-        log.info("Get data from Redis {}:{}", key, user);
+        log.info("Get data from Redis {} , {}", key, user);
         return Optional.ofNullable(user);
     }
 
