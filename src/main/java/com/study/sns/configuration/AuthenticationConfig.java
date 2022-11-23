@@ -26,14 +26,14 @@ public class AuthenticationConfig {
     @Bean
     public void configure(WebSecurity web) throws Exception {
         // /api로 시작하는 path들만 통과
-        web.ignoring().regexMatchers("^(?!/api/).*");
+        web.ignoring().regexMatchers("^(?!/api/).*")
+                .regexMatchers("/api/*/users/join", "/api/*/users/login");
     }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/*/users/join", "/api/*/users/login").permitAll()
                 .antMatchers("/api/**").authenticated()
                 .and()
                 .sessionManagement()
