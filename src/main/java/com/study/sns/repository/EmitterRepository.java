@@ -26,6 +26,10 @@ public class EmitterRepository {
         log.info("Get sseEmitter {}", userId);
         return Optional.ofNullable(emitterMap.get(key));
     };
+    
+    public void delete(Integer userId) {
+        emitterMap.remove(getKey(userId));
+    };
 
     private String getKey(Integer userId) {
         return "Emitter:UID" + userId;
