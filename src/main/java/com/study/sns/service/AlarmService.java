@@ -33,8 +33,8 @@ public class AlarmService {
     public SseEmitter connectAlarm(Integer userId) {
         SseEmitter sseEmitter = new SseEmitter(DEFAULT_TIMEOUT);
 
-        sseEmitter.onCompletion(() -> emitterRepository.delete(userId););
-        sseEmitter.onTimeout(() -> emitterRepository.delete(userId););
+        sseEmitter.onCompletion(() -> emitterRepository.delete(userId));
+        sseEmitter.onTimeout(() -> emitterRepository.delete(userId));
 
         try{
             sseEmitter.send(SseEmitter.event().id("id").name(ALARM_NAME).data("connect completed"));
