@@ -6,7 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
 
-import javax.swing.text.html.Option;
 import java.time.Duration;
 import java.util.Optional;
 
@@ -40,6 +39,5 @@ public class UserCacheRepository {
         // redis에 key값을 구성할때는 항상 prefix를 붙여서 사용
         return "USER:" + userName;  // USER:admin admin이라는 userName에 USER정보를 저장한다는걸 표현하기 위함
     }
-
 
 }

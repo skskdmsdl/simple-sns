@@ -3,7 +3,6 @@ package com.study.sns.service;
 import com.study.sns.exception.ErrorCode;
 import com.study.sns.model.Alarm;
 import com.study.sns.model.User;
-import com.study.sns.model.entity.AlarmEntity;
 import com.study.sns.model.entity.UserEntity;
 import com.study.sns.exception.SnsApplicationException;
 import com.study.sns.repository.AlarmEntityRepository;
@@ -18,7 +17,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -67,7 +65,6 @@ public class UserService {
 
         // 토큰 생성
         String token = JwtTokenUtils.generateToken(userName, secretKey, expiredTimeMs);
-
         return token;
     }
 

@@ -3,7 +3,6 @@ package com.study.sns.exception;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-// TODO : implement
 @Getter
 @AllArgsConstructor
 public class SnsApplicationException extends RuntimeException{
