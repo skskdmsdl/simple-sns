@@ -18,7 +18,6 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 @RequiredArgsConstructor
 public class RedisConfiguration {
     // 자주 접근하는 데이터 캐싱하는 것이 좋음
-
     private final RedisProperties redisProperties;
 
     @Bean
@@ -35,7 +34,7 @@ public class RedisConfiguration {
         RedisTemplate<String, User> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(redisConnectionFactory());
         redisTemplate.setKeySerializer(new StringRedisSerializer());
-        redisTemplate.setValueSerializer(new Jackson2JsonRedisSerializer<User>(User.class));
+        redisTemplate.setValueSerializer(new Jackson2JsonRedisSerializer<>(User.class));
         return redisTemplate;
     }
 

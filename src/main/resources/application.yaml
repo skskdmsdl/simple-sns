@@ -18,4 +18,4 @@ jwt:
   # 30 days 24*60*60*30
   token.expired-time-ms: 2592000000
 
-spring.redis.url:
+spring.redis.url: redis://default:fpACpBKdEYzAznQJhWDi56t049cWkIOM@redis-18789.c81.us-east-1-2.ec2.cloud.redislabs.com:18789
