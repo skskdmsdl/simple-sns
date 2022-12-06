@@ -15,6 +15,7 @@ Spring Boot
 * Spring Security
 * Postgresql Driver
 * Lombok
+* Redis
 
 그 외
 * Heroku 배포 URL : https://simple-sns-project.herokuapp.com/authentication/sign-in
