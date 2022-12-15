@@ -58,4 +58,10 @@ public class PostEntity {
         entity.setUser(userEntity);
         return entity;
     }
+    
+    // post 수정
+    public void updatePost(String title, String body) {
+        this.title = title;
+        this.body = body;
+    }
 }
